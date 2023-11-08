@@ -20,7 +20,12 @@ app.post(
   upload.single('upfile'),
   function (req, res, next) {
     console.log(req.file);
-    res.status(201).json({ message: 'file uploaded' });
+    const file = {
+      name: req.file.originalname,
+      type: req.file.mimetype,
+      size: req.file.size,
+    };
+    res.status(201).json(file);
   }
 );
 
